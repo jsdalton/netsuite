@@ -16,12 +16,14 @@ module NetSuite
           case object
           when Hash
             object.each do |k, v|
-              transformed_attrs.merge!(k[0..-5].to_sym => v)
+              carrier_suffix_index = k.to_s.rindex('_')-1
+              transformed_attrs.merge!(k[0..carrier_suffix_index].to_sym => v)
             end
           when Array
             object.each do |hash|
               hash.each do |k, v|
-                transformed_attrs.merge!(k[0..-5].to_sym => v)
+                carrier_suffix_index = k.to_s.rindex('_')-1
+                transformed_attrs.merge!(k[0..carrier_suffix_index].to_sym => v)
               end
             end
           end

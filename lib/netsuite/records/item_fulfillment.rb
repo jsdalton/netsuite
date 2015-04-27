@@ -35,6 +35,16 @@ module NetSuite
           attributes[:package_list].merge! attributes[:package_ups_list]
         end
 
+        if !attributes.empty? && attributes[:package_usps_list]
+          attributes[:package_list] ||= {}
+          attributes[:package_list].merge! attributes[:package_usps_list]
+        end
+
+        if !attributes.empty? && attributes[:package_fedex_list]
+          attributes[:package_list] ||= {}
+          attributes[:package_list].merge! attributes[:package_fedex_list]
+        end
+
         initialize_from_attributes_hash(attributes)
       end
 
